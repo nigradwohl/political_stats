@@ -1,0 +1,29 @@
+---
+title: "Polizeistatistiken 2023"
+output: html_document
+date: "`r Sys.Date()`"
+editor_options: 
+  chunk_output_type: console
+---
+Fragen: 
+
+* Inwiefern lasssen sich Kriminalstatistiken transparenter darstellen? 
+
+# Einlesen der Daten 
+
+```{r}
+library(pdftools)
+
+pks2023 <- pdf_text("https://www.bmi.bund.de/SharedDocs/downloads/DE/publikationen/themen/sicherheit/pks-2023.pdf?__blob=publicationFile&v=3")
+
+pks2023
+
+
+# Tables can be found at -- T0x:
+pks_tabs <- grep("– T0[0-9]", pks2023, value = TRUE)
+
+pks_tabs[1]
+
+strsplit(pks_tabs, split = "        ")
+```
+
